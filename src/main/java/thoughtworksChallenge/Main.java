@@ -32,7 +32,7 @@ public class Main {
         rover = marsRoverService.processInstructions(rover, instructions);
 
         if (rover.getX() > plateau.getX() || rover.getY() > plateau.getY() || rover.getX() < 0 || rover.getY() < 0) {
-            throw new IllegalArgumentException("Can't move rover robot, it would be out of plateau limits.");
+            throw new Exception("Can't move rover robot, it would be out of plateau limits.");
         } else {
             System.out.print(rover.getX());
             System.out.print(' ');
