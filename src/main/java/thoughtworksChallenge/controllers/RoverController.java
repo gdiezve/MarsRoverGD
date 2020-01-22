@@ -1,6 +1,7 @@
 package thoughtworksChallenge.controllers;
 
 import thoughtworksChallenge.domain.Rover;
+import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
 public class RoverController {
 
@@ -14,7 +15,7 @@ public class RoverController {
      * @param command instruction of new rover's position
      * @throws Exception error when command is incorrect
      */
-    public Rover readCommand(char command, Rover rover) throws Exception {
+    public Rover readCommand(char command, Rover rover) throws InvalidInstructionException {
 
         if (command == 'L') {
             turnLeft(rover);
@@ -23,7 +24,7 @@ public class RoverController {
         } else if (command == 'M') {
             move(rover);
         } else {
-            throw new Exception("Enter a valid command, please.");
+            throw new InvalidInstructionException();
         }
 
         return rover;
