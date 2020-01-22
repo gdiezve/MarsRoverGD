@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import thoughtworksChallenge.domain.Plateau;
 import thoughtworksChallenge.domain.Rover;
 
 import static org.junit.Assert.assertEquals;
@@ -15,6 +16,7 @@ public class MarsRoverServiceTest {
 
     private MarsRoverService marsRoverService;
     private Rover rover;
+    private Plateau plateau;
     private String emptyInstructions;
     private String instructions;
 
@@ -22,6 +24,7 @@ public class MarsRoverServiceTest {
     public void before() {
         this.marsRoverService = new MarsRoverService();
         this.rover = new Rover(1,2,'N');
+        this.plateau = new Plateau(5,5);
         this.emptyInstructions = "";
     }
 
@@ -37,7 +40,8 @@ public class MarsRoverServiceTest {
 
     @Test
     public void processEmptyInstructions() throws Exception {
-        rover = marsRoverService.processInstructions(rover, emptyInstructions);
+
+        marsRoverService.processInstructions(plateau, rover, emptyInstructions);
 
         assertEquals(rover.getX(), 1);
         assertEquals(rover.getY(),2);
@@ -47,7 +51,7 @@ public class MarsRoverServiceTest {
     @Test
     public void processInstructions() throws Exception {
         instructions = "LMLMLMLMM";
-        rover = marsRoverService.processInstructions(rover, instructions);
+        marsRoverService.processInstructions(plateau, rover, instructions);
         assertEquals(rover.getX(), 1);
         assertEquals(rover.getY(),3);
         assertEquals(rover.getCardinalPoint(), 'N');
@@ -56,7 +60,7 @@ public class MarsRoverServiceTest {
         rover.setY(3);
         rover.setCardinalPoint('E');
         instructions = "MMRMMRMRRM";
-        rover = marsRoverService.processInstructions(rover, instructions);
+        marsRoverService.processInstructions(plateau, rover, instructions);
         assertEquals(rover.getX(), 5);
         assertEquals(rover.getY(),1);
         assertEquals(rover.getCardinalPoint(), 'E');
@@ -66,7 +70,7 @@ public class MarsRoverServiceTest {
     public void processWrongInstructions() throws Exception {
         instructions = "HYGJBOJN";
         try {
-            rover = marsRoverService.processInstructions(rover, instructions);
+            marsRoverService.processInstructions(plateau, rover, instructions);
         } catch (Exception e) {
             System.out.println(e);
         }
