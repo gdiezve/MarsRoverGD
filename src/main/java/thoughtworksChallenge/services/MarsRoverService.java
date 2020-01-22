@@ -2,6 +2,7 @@ package thoughtworksChallenge.services;
 
 
 import thoughtworksChallenge.controllers.*;
+import thoughtworksChallenge.domain.Plateau;
 import thoughtworksChallenge.domain.Rover;
 
 public class MarsRoverService {
@@ -18,7 +19,7 @@ public class MarsRoverService {
      * @return rover after process instructions
      * @throws Exception error when some command is incorrect
      */
-    public Rover processInstructions(Rover rover, String instructions) {
+    public void processInstructions(Plateau plateau, Rover rover, String instructions) throws Exception {
 
         for (int i = 0; i < instructions.length(); i++) {
             try {
@@ -27,6 +28,15 @@ public class MarsRoverService {
                 System.out.println(e);
             }
         }
-        return rover;
+
+        if (rover.getX() > plateau.getX() || rover.getY() > plateau.getY() || rover.getX() < 0 || rover.getY() < 0) {
+            throw new Exception("Can't move rover robot, it would be out of plateau limits.");
+        } else {
+            System.out.print(rover.getX());
+            System.out.print(' ');
+            System.out.print(rover.getY());
+            System.out.print(' ');
+            System.out.println( rover.getCardinalPoint());
+        }
     }
 }

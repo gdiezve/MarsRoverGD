@@ -12,7 +12,7 @@ public class Main {
      * Main method of Mars Rover problem
      * @param args arguments
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         MarsRoverService marsRoverService = new MarsRoverService();
         Scanner scanner = new Scanner(System.in);
 
@@ -29,16 +29,11 @@ public class Main {
         System.out.println("Please, enter the instructions (input example: LMMLMRMM):\n");
         String instructions = scanner.next();
 
-        rover = marsRoverService.processInstructions(rover, instructions);
-
-        if (rover.getX() > plateau.getX() || rover.getY() > plateau.getY() || rover.getX() < 0 || rover.getY() < 0) {
-            throw new Exception("Can't move rover robot, it would be out of plateau limits.");
-        } else {
-            System.out.print(rover.getX());
-            System.out.print(' ');
-            System.out.print(rover.getY());
-            System.out.print(' ');
-            System.out.println( rover.getCardinalPoint());
+        try {
+            marsRoverService.processInstructions(plateau, rover, instructions);
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 }
