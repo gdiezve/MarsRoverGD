@@ -18,9 +18,14 @@ public class MarsRoverService {
      * @return rover after process instructions
      * @throws Exception error when some command is incorrect
      */
-    public Rover processInstructions(Rover rover, String instructions) throws Exception {
+    public Rover processInstructions(Rover rover, String instructions) {
+
         for (int i = 0; i < instructions.length(); i++) {
-            rover = roverController.readCommand(instructions.charAt(i), rover);
+            try {
+                rover = roverController.readCommand(instructions.charAt(i), rover);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
         return rover;
     }
