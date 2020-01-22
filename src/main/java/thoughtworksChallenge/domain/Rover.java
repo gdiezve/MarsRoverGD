@@ -9,7 +9,7 @@ public class Rover {
     public Rover(){
         this.x = 0;
         this.y = 0;
-        this.cardinalPoint = 0;
+        this.cardinalPoint = ' ';
     }
 
     public Rover (int x, int y, char CP) {

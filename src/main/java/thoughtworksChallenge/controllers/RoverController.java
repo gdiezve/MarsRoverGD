@@ -4,11 +4,6 @@ import thoughtworksChallenge.domain.Rover;
 
 public class RoverController {
 
-    public static final Integer N = 1;
-    public static final Integer E = 2;
-    public static final Integer S = 3;
-    public static final Integer W = 4;
-
     public RoverController() {
 
     }
@@ -36,33 +31,56 @@ public class RoverController {
 
     //TODO: explicar metodes privats
     private static Rover move(Rover rover) {
-        if (rover.getCardinalPoint() == N) {
-            rover.setY(rover.getY() + 1);
-        } else if (rover.getCardinalPoint() == E) {
-            rover.setX(rover.getX() + 1);
-        } else if (rover.getCardinalPoint() == S) {
-            rover.setY(rover.getY() - 1);
-        } else if (rover.getCardinalPoint() == W) {
-            rover.setX(rover.getX() - 1);
+        char CP = rover.getCardinalPoint();
+        switch (CP) {
+            case 'N':
+                rover.setY(rover.getY() + 1);
+                break;
+            case 'W':
+                rover.setX(rover.getX() - 1);
+                break;
+            case 'S':
+                rover.setY(rover.getY() - 1);
+                break;
+            case 'E':
+                rover.setX(rover.getX() + 1);
+                break;
         }
-
         return rover;
     }
     private static Rover turnLeft(Rover rover) {
-        int CP = rover.getCardinalPoint() - 1;
-        if (CP < N) {
-            rover.setCardinalPoint('W');
-        } else {
-            rover.setCardinalPoint((char) (CP - 1));
+        char CP = rover.getCardinalPoint();
+        switch (CP) {
+            case 'N':
+                rover.setCardinalPoint('W');
+                break;
+            case 'W':
+                rover.setCardinalPoint('S');
+                break;
+            case 'S':
+                rover.setCardinalPoint('E');
+                break;
+            case 'E':
+                rover.setCardinalPoint('N');
+                break;
         }
         return rover;
     }
     private static Rover turnRight(Rover rover) {
-        int CP = rover.getCardinalPoint() + 1;
-        if (CP > W) {
-            rover.setCardinalPoint('N');
-        } else {
-            rover.setCardinalPoint((char) (CP + 1));
+        char CP = rover.getCardinalPoint();
+        switch (CP) {
+            case 'N':
+                rover.setCardinalPoint('E');
+                break;
+            case 'W':
+                rover.setCardinalPoint('N');
+                break;
+            case 'S':
+                rover.setCardinalPoint('W');
+                break;
+            case 'E':
+                rover.setCardinalPoint('S');
+                break;
         }
         return rover;
     }
