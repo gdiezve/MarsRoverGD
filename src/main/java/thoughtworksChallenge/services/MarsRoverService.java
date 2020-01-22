@@ -10,9 +10,13 @@ public class MarsRoverService {
 
     private RoverController roverController;
 
+    /**
+     * Constructor MarsRoverService class
+     */
     public MarsRoverService() {
         this.roverController = new RoverController();
     }
+
     /**
      * Process the instructions on given rover
      * @param rover that would have new position attributes

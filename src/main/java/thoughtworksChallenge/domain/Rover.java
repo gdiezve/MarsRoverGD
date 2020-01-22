@@ -6,12 +6,18 @@ public class Rover {
     private int y;
     private char cardinalPoint;
 
+    /**
+     * Constructor Rover class
+     */
     public Rover(){
         this.x = 0;
         this.y = 0;
         this.cardinalPoint = ' ';
     }
 
+    /**
+     * Constructor Rover class
+     */
     public Rover (int x, int y, char CP) {
         this.x = x;
         this.y = y;

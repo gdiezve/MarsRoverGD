@@ -5,6 +5,9 @@ import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
 public class RoverController {
 
+    /**
+     * Constructor RoverController class
+     */
     public RoverController() {
 
     }
@@ -30,7 +33,10 @@ public class RoverController {
         return rover;
     }
 
-    //TODO: explicar metodes privats
+    /**
+     * Move rover 1 point on plateau's grid
+     * @param rover that would have new position attributes
+     */
     private static Rover move(Rover rover) {
         char CP = rover.getCardinalPoint();
         switch (CP) {
@@ -49,6 +55,11 @@ public class RoverController {
         }
         return rover;
     }
+
+    /**
+     * Change rover orientation on plateau's grid counterclockwise
+     * @param rover that would have new position attributes
+     */
     private static Rover turnLeft(Rover rover) {
         char CP = rover.getCardinalPoint();
         switch (CP) {
@@ -67,6 +78,11 @@ public class RoverController {
         }
         return rover;
     }
+
+    /**
+     * Change rover orientation on plateau's grid clockwise
+     * @param rover that would have new position attributes
+     */
     private static Rover turnRight(Rover rover) {
         char CP = rover.getCardinalPoint();
         switch (CP) {
