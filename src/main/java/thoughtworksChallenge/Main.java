@@ -2,8 +2,10 @@ package thoughtworksChallenge;
 
 import thoughtworksChallenge.domain.Plateau;
 import thoughtworksChallenge.domain.Rover;
-import thoughtworksChallenge.services.*;
+import thoughtworksChallenge.services.MarsRoverService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,26 +15,41 @@ public class Main {
      * @param args arguments
      */
     public static void main(String[] args) {
-        MarsRoverService marsRoverService = new MarsRoverService();
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please, enter plateau dimensions (input example: 5 5):\n");
-        Plateau plateau = new Plateau(scanner.nextInt(), scanner.nextInt());
-
-        System.out.println("Please, enter rover orientation (input example: 2 3 N):\n");
-        Rover rover = new Rover();
-
-        rover.setX(scanner.nextInt());
-        rover.setY(scanner.nextInt());
-        rover.setCardinalPoint(scanner.next().charAt(0));
-
-        System.out.println("Please, enter the instructions (input example: LMMLMRMM):\n");
-        String instructions = scanner.next();
+        File input = new File(args[0]);
+        Scanner scanner = new Scanner("");
+        int i = 1;
 
         try {
-            marsRoverService.processInstructions(plateau, rover, instructions);
-        } catch (Exception e) {
+            scanner = new Scanner(input);
+        } catch (FileNotFoundException e) {
             System.out.println(e);
+        }
+
+
+        MarsRoverService marsRoverService = new MarsRoverService();
+
+        Plateau plateau = new Plateau(scanner.nextInt(), scanner.nextInt());
+        System.out.println("Plateau dimensions: " + plateau.getX() + " " + plateau.getY() + "\n");
+
+        while (scanner.hasNextLine()) {
+            Rover rover = new Rover();
+
+            rover.setX(scanner.nextInt());
+            rover.setY(scanner.nextInt());
+            rover.setCardinalPoint(scanner.next().charAt(0));
+            System.out.println("Rover " + i + " orientation: " + rover.getX() + " " + rover.getY() + " " + rover.getCardinalPoint() + "\n");
+
+            String instructions = scanner.next();
+            System.out.println("Instructions: " + instructions + "\n");
+
+            try {
+                marsRoverService.processInstructions(plateau, rover, instructions);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+            i++;
         }
 
     }

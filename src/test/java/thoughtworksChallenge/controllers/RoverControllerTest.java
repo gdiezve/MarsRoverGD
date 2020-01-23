@@ -28,7 +28,7 @@ public class RoverControllerTest {
     }
 
     @Test
-    public void initRoverController() throws Exception{
+    public void initRoverController() {
         assertNotNull(this.roverController);
     }
 

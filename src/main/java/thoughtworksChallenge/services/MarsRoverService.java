@@ -37,11 +37,7 @@ public class MarsRoverService {
         if (rover.getX() > plateau.getX() || rover.getY() > plateau.getY() || rover.getX() < 0 || rover.getY() < 0) {
             throw new WrongRoverPositionException();
         } else {
-            System.out.print(rover.getX());
-            System.out.print(' ');
-            System.out.print(rover.getY());
-            System.out.print(' ');
-            System.out.println( rover.getCardinalPoint());
+            System.out.println("New rover orientation: " + rover.getX() + " " + rover.getY() + " " + rover.getCardinalPoint() + "\n");
         }
     }
 }
