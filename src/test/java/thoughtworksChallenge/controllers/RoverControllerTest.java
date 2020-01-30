@@ -60,6 +60,18 @@ public class RoverControllerTest {
     }
 
     @Test
+    public void ifTheCommandIsRRoverShouldBeTurnRight() throws Exception {
+        this.rover = this.roverController.readCommand('R', this.rover);
+
+        assertEquals(rover.getCardinalPoint(), 'E');
+    }
+
+    @Test
+    public void ifTheCommandIsLRoverShouldBeTurnLeft() {
+
+    }
+
+    @Test
     public void readWrongCommand() throws Exception {
         try {
             this.rover = this.roverController.readCommand('H', this.rover);
@@ -67,5 +79,7 @@ public class RoverControllerTest {
             System.out.println(e);
         }
     }
+
+
 
 }
