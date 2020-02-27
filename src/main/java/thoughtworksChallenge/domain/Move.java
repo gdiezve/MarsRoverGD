@@ -2,7 +2,7 @@ package thoughtworksChallenge.domain;
 
 import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
-public class RoverMove {
+public class Move {
 
     /**
      * Process the command on given rover
