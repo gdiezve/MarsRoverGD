@@ -1,16 +1,8 @@
-package thoughtworksChallenge.controllers;
+package thoughtworksChallenge.domain;
 
-import thoughtworksChallenge.domain.Rover;
 import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
-public class RoverController {
-
-    /**
-     * Constructor RoverController class
-     */
-    public RoverController() {
-
-    }
+public class Move {
 
     /**
      * Process the command on given rover
@@ -20,14 +12,18 @@ public class RoverController {
      */
     public Rover readCommand(char command, Rover rover) throws InvalidInstructionException {
 
-        if (command == 'L') {
-            turnLeft(rover);
-        } else if (command == 'R') {
-            turnRight(rover);
-        } else if (command == 'M') {
-            move(rover);
-        } else {
-            throw new InvalidInstructionException();
+        switch (command) {
+            case 'L':
+                turnLeft(rover);
+                break;
+            case 'R':
+                turnRight(rover);
+                break;
+            case 'M':
+                move(rover);
+                break;
+            default:
+                throw new InvalidInstructionException();
         }
 
         return rover;
