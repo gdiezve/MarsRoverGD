@@ -10,12 +10,12 @@ import static org.junit.Assert.assertNotNull;
 
 public class MoveTest {
 
-    private Move move;
+    private RoverMove move;
     private Rover rover;
 
     @Before
     public void before() {
-        this.move = new Move();
+        this.move = new RoverMove();
         this.rover = new Rover(1, 2, 'N');
     }
 
