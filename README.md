@@ -6,7 +6,7 @@
 
 To run correctly the project it is necessary to specify the path of input.txt as a program argument. You could find this file inside MarsRoverGD.zip.
 1. Open the project on IDE.
-2. Configure running configuration adding the full path of intput.txt file.
+2. Add on running configuration the full path of intput.txt file as a parameter.
 3. Run the project.
 
 ## Problem
