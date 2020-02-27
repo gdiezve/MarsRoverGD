@@ -1,34 +1,27 @@
-package thoughtworksChallenge.services;
+package thoughtworksChallenge.domain;
 
-
-import thoughtworksChallenge.controllers.RoverController;
-import thoughtworksChallenge.domain.Plateau;
-import thoughtworksChallenge.domain.Rover;
 import thoughtworksChallenge.exceptions.WrongRoverPositionException;
 
-public class MarsRoverService {
+public class Route {
 
-    private RoverController roverController;
+    private Move move;
 
-    /**
-     * Constructor MarsRoverService class
-     */
-    public MarsRoverService() {
-        this.roverController = new RoverController();
+    public Route() {
+        this.move = new Move();
     }
 
     /**
      * Process the instructions on given rover
-     * @param rover that would have new position attributes
-     * @param instructions instructions of new rover's position
-     * @return rover after process instructions
-     * @throws Exception error when some command is incorrect
+     * @param plateau where rover is going to move
+     * @param rover that is going to move around plateau
+     * @param instructions instructions of new rover's route
+     * @throws Exception error when Rover doesn't fit on Plateau dimensions
      */
     public void processInstructions(Plateau plateau, Rover rover, String instructions) throws WrongRoverPositionException {
 
         for (int i = 0; i < instructions.length(); i++) {
             try {
-                rover = roverController.readCommand(instructions.charAt(i), rover);
+                rover = move.readCommand(instructions.charAt(i), rover);
             } catch (Exception e) {
                 System.out.println(e);
             }

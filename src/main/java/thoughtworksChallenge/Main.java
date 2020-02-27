@@ -1,8 +1,8 @@
 package thoughtworksChallenge;
 
 import thoughtworksChallenge.domain.Plateau;
+import thoughtworksChallenge.domain.Route;
 import thoughtworksChallenge.domain.Rover;
-import thoughtworksChallenge.services.MarsRoverService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +27,7 @@ public class Main {
         }
 
 
-        MarsRoverService marsRoverService = new MarsRoverService();
+        Route roverRoute = new Route();
 
         Plateau plateau = new Plateau(scanner.nextInt(), scanner.nextInt());
         System.out.println("Plateau dimensions: " + plateau.getX() + " " + plateau.getY() + "\n");
@@ -44,7 +44,7 @@ public class Main {
             System.out.println("Instructions: " + instructions + "\n");
 
             try {
-                marsRoverService.processInstructions(plateau, rover, instructions);
+                roverRoute.processInstructions(plateau, rover, instructions);
             } catch (Exception e) {
                 System.out.println(e);
             }
