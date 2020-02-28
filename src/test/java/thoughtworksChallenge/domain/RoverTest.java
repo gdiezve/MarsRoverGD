@@ -16,7 +16,7 @@ public class RoverTest {
 
     @Before
     public void before() {
-        this.rover = new Rover(1,2,'N');
+        this.rover = new Rover(1, 2, 'N');
     }
 
     @After
@@ -26,14 +26,9 @@ public class RoverTest {
 
     @Test
     public void createRover() throws Exception {
-        assertEquals(rover.getX(),1);
-        assertEquals(rover.getY(),2);
+        assertEquals(rover.getX(), 1);
+        assertEquals(rover.getY(), 2);
         assertEquals(rover.getCardinalPoint(), 'N');
-        assertTrue(rover.getX() != 2);
-        assertTrue(rover.getY() != 1);
-        assertTrue(rover.getCardinalPoint() != 'W');
-        assertTrue(rover.getCardinalPoint() != 'S');
-        assertTrue(rover.getCardinalPoint() != 'E');
     }
 
     @Test
@@ -41,7 +36,38 @@ public class RoverTest {
         this.rover.setX(3);
         this.rover.setY(1);
 
-        assertEquals(rover.getX(),3);
-        assertEquals(rover.getY(),1);
+        assertEquals(rover.getX(), 3);
+        assertEquals(rover.getY(), 1);
+    }
+
+    @Test
+    public void roverMovesTowardsNord() {
+        this.rover.move();
+        assertEquals(3, this.rover.getY());
+        assertEquals(1, this.rover.getX());
+    }
+
+    @Test
+    public void roverMovesTowardsEast() {
+        this.rover = new Rover(0, 0, 'E');
+        this.rover.move();
+        assertEquals(1, this.rover.getX());
+        assertEquals(0, this.rover.getY());
+    }
+
+    @Test
+    public void roverMoveTowardsWest() {
+        this.rover = new Rover(0,0,'W');
+        this.rover.move();
+        assertEquals(-1, this.rover.getX());
+        assertEquals(0, this.rover.getY());
+    }
+
+    @Test
+    public void roverMoveTowardsSud() {
+        this.rover = new Rover(0,0,'S');
+        this.rover.move();
+        assertEquals(-1, this.rover.getY());
+        assertEquals(0, this.rover.getX());
     }
 }

@@ -48,4 +48,19 @@ public class Rover {
         this.y = y;
     }
 
+    public void move() {
+        switch (this.cardinalPoint) {
+            case 'E':
+                this.x++;
+                break;
+            case 'W':
+                this.x--;
+                break;
+            case 'N':
+                this.y++;
+                break;
+            case 'S':
+                this.y--;
+        }
+    }
 }
