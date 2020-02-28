@@ -5,10 +5,6 @@ package thoughtworksChallenge.exceptions;
  */
 public class MarsRoverException extends Exception {
 
-    public MarsRoverException() {
-        super();
-    }
-
     public MarsRoverException(String msg) {
         super(msg);
     }
