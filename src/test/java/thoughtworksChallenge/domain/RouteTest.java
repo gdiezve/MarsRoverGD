@@ -3,7 +3,7 @@ package thoughtworksChallenge.domain;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import thoughtworksChallenge.exceptions.WrongRoverPositionException;
+import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -20,7 +20,8 @@ public class RouteTest {
     public void before() {
         this.rover = new Rover(1, 2, 'N');
         this.plateau = new Plateau(5,5);
-        this.route = new Route();
+        this.instructions = "LMMRMMRMLM";
+        this.route = new Route(this.instructions, this.rover);
         this.emptyInstructions = "";
     }
 
@@ -35,14 +36,15 @@ public class RouteTest {
 
     @Test
     public void routeShouldInitializeCorrectly() {
-        this.route = new Route();
-        assertNotNull(this.route);
+        String instruct = "LMMRMMRMLM";
+        Route r = new Route(instruct, rover);
+        assertNotNull(r);
     }
 
     @Test
-    public void ifInstructionsAreEmptyRoverShouldNotMove() throws WrongRoverPositionException {
+    public void ifInstructionsAreEmptyRoverShouldNotMove() throws InvalidInstructionException {
 
-        route.processInstructions(plateau, rover, emptyInstructions);
+        route.processRoute(emptyInstructions);
 
         assertEquals(rover.getX(), 1);
         assertEquals(rover.getY(),2);
@@ -50,9 +52,9 @@ public class RouteTest {
     }
 
     @Test
-    public void ifInstructionsAreCorrectRoverShouldMove() throws WrongRoverPositionException {
+    public void ifInstructionsAreCorrectRoverShouldMove() throws InvalidInstructionException {
         instructions = "LMLMLMLMM";
-        route.processInstructions(plateau, rover, instructions);
+        route.processRoute(instructions);
         assertEquals(rover.getX(), 1);
         assertEquals(rover.getY(),3);
         assertEquals(rover.getCardinalPoint(), 'N');
@@ -60,20 +62,17 @@ public class RouteTest {
         rover.setX(3);
         rover.setY(3);
         rover.setCardinalPoint('E');
+
         instructions = "MMRMMRMRRM";
-        route.processInstructions(plateau, rover, instructions);
+        route.processRoute(instructions);
         assertEquals(rover.getX(), 5);
         assertEquals(rover.getY(),1);
         assertEquals(rover.getCardinalPoint(), 'E');
     }
 
-    @Test
-    public void ifInstructionsAreWrongRoverShouldNotMove() {
+    @Test (expected = InvalidInstructionException.class)
+    public void ifInstructionsAreWrongRoverShouldNotMove() throws InvalidInstructionException {
         instructions = "HYGJBOJN";
-        try {
-            route.processInstructions(plateau, rover, instructions);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        route.processRoute(instructions);
     }
 }

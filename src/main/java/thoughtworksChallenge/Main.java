@@ -27,7 +27,7 @@ public class Main {
         }
 
 
-        Route roverRoute = new Route();
+        Route roverRoute;
 
         Plateau plateau = new Plateau(scanner.nextInt(), scanner.nextInt());
         System.out.println("Plateau dimensions: " + plateau.getX() + " " + plateau.getY() + "\n");
@@ -44,7 +44,8 @@ public class Main {
             System.out.println("Instructions: " + instructions + "\n");
 
             try {
-                roverRoute.processInstructions(plateau, rover, instructions);
+                roverRoute = new Route(instructions, rover);
+                roverRoute.processRoute(instructions);
             } catch (Exception e) {
                 System.out.println(e);
             }

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import thoughtworksChallenge.exceptions.PortalOutsidePlateauBoundaries;
+import thoughtworksChallenge.exceptions.RoverOutsidePlateauBoundaries;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -38,8 +39,8 @@ public class PlateauTest {
         this.plateau.setX(4);
         this.plateau.setY(5);
 
-        assertEquals(plateau.getX(),4);
-        assertEquals(plateau.getY(),5);
+        assertEquals(4, plateau.getX());
+        assertEquals(5, plateau.getY());
     }
 
     @Test
@@ -54,5 +55,19 @@ public class PlateauTest {
     public void shouldThrowExceptionWhenPortalDoesNotFitOnPlateau() throws PortalOutsidePlateauBoundaries {
         Portal portal = new Portal(3,6,6,6);
         this.plateau.addPortal(portal);
+    }
+
+    @Test
+    public void roverShouldBeOnsidePlateauBoundaries() throws RoverOutsidePlateauBoundaries {
+        Rover r = new Rover(3,4,'N');
+
+        this.plateau.addRover(r);
+        assertEquals(true, this.plateau.getRovers().contains(r));
+    }
+
+    @Test(expected = RoverOutsidePlateauBoundaries.class)
+    public void shouldThrowExceptionWhenRoverIsOutsidePlateauBoundaries() throws RoverOutsidePlateauBoundaries {
+        Rover r = new Rover(6,7,'N');
+        this.plateau.addRover(r);
     }
 }

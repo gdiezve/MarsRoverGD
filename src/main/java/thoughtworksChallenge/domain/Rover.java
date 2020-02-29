@@ -63,4 +63,38 @@ public class Rover {
                 this.y--;
         }
     }
+
+    public void turnRight() {
+        switch (this.cardinalPoint) {
+            case 'N':
+                setCardinalPoint('E');
+                break;
+            case 'S':
+                setCardinalPoint('W');
+                break;
+            case 'E':
+                setCardinalPoint('S');
+                break;
+            case 'W':
+                setCardinalPoint('N');
+                break;
+        }
+    }
+
+    public void turnLeft() {
+        switch (this.cardinalPoint) {
+            case 'N':
+                setCardinalPoint('W');
+                break;
+            case 'S':
+                setCardinalPoint('E');
+                break;
+            case 'E':
+                setCardinalPoint('N');
+                break;
+            case 'W':
+                setCardinalPoint('S');
+                break;
+        }
+    }
 }

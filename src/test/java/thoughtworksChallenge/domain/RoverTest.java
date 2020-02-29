@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import thoughtworksChallenge.exceptions.InvalidInstructionException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -41,33 +42,54 @@ public class RoverTest {
     }
 
     @Test
-    public void roverMovesTowardsNord() {
+    public void roverMoves() {
         this.rover.move();
         assertEquals(3, this.rover.getY());
         assertEquals(1, this.rover.getX());
-    }
 
-    @Test
-    public void roverMovesTowardsEast() {
-        this.rover = new Rover(0, 0, 'E');
+        this.rover.turnRight();
         this.rover.move();
+        assertEquals(3, this.rover.getY());
+        assertEquals(2, this.rover.getX());
+
+        this.rover.turnRight();
+        this.rover.move();
+        assertEquals(2, this.rover.getY());
+        assertEquals(2, this.rover.getX());
+
+        this.rover.turnRight();
+        this.rover.move();
+        assertEquals(2, this.rover.getY());
         assertEquals(1, this.rover.getX());
-        assertEquals(0, this.rover.getY());
     }
 
     @Test
-    public void roverMoveTowardsWest() {
-        this.rover = new Rover(0,0,'W');
-        this.rover.move();
-        assertEquals(-1, this.rover.getX());
-        assertEquals(0, this.rover.getY());
+    public void roverTurnsRight() {
+        this.rover.turnRight();
+        assertEquals('E', this.rover.getCardinalPoint());
+
+        this.rover.turnRight();
+        assertEquals('S', this.rover.getCardinalPoint());
+
+        this.rover.turnRight();
+        assertEquals('W', this.rover.getCardinalPoint());
+
+        this.rover.turnRight();
+        assertEquals('N', this.rover.getCardinalPoint());
     }
 
     @Test
-    public void roverMoveTowardsSud() {
-        this.rover = new Rover(0,0,'S');
-        this.rover.move();
-        assertEquals(-1, this.rover.getY());
-        assertEquals(0, this.rover.getX());
+    public void roverTurnsLeft() {
+        this.rover.turnLeft();
+        assertEquals('W', this.rover.getCardinalPoint());
+
+        this.rover.turnLeft();
+        assertEquals('S', this.rover.getCardinalPoint());
+
+        this.rover.turnLeft();
+        assertEquals('E', this.rover.getCardinalPoint());
+
+        this.rover.turnLeft();
+        assertEquals('N', this.rover.getCardinalPoint());
     }
 }
